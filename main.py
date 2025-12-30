@@ -39,7 +39,7 @@ st.write(
 # If you want this page only, you can skip the multi-page code.
 # If your group uses multi-page Streamlit, you can rename your page:
 # Example for multi-page:
-# page1 = st.Page('Objectives1.py', title='Page 1', icon=":bar_chart:")
+# page1 = st.Page('member_impulse_factors.py', title='Page 1', icon=":bar_chart:")
 # page2 = st.Page('Objectives2.py', title='Page 2', icon=":insights:")
 # page3 = st.Page('Objectives3.py', title='Page 3', icon=":schedule:")
 # page4 = st.Page('Objectives4.py', title='Page 4', icon=":schedule:")
