@@ -33,16 +33,15 @@ st.write(
     """
 )
 
-# ------------------------------------------------------------
-# Navigation / Multi-page setup (Optional)
-# ------------------------------------------------------------
-# If you want this page only, you can skip the multi-page code.
-# If your group uses multi-page Streamlit, you can rename your page:
-# Example for multi-page:
-# page1 = st.Page('member_impulse_factors.py', title='Page 1', icon=":bar_chart:")
-# page2 = st.Page('Objectives2.py', title='Page 2', icon=":insights:")
-# page3 = st.Page('Objectives3.py', title='Page 3', icon=":schedule:")
-# page4 = st.Page('Objectives4.py', title='Page 4', icon=":schedule:")
+page1 = st.Page('member_impulse_factors.py', title='Page 1', icon=":bar_chart:")
+page2 = st.Page('Objectives2.py', title='Page 2', icon=":insights:")
+page3 = st.Page('Objectives3.py', title='Page 3', icon=":schedule:")
+page4 = st.Page('Objectives4.py', title='Page 4', icon=":schedule:")
 
-# pg = st.navigation({"Menu": [page1, page2, page3, page4]}) 
-# pg.run()
+pg = st.navigation(
+        {
+            "Menu": [page1, page2, page3, page4]
+        }
+    )
+
+pg.run()
