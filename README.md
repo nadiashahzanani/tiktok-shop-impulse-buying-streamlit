@@ -1,4 +1,4 @@
-### SV of Students' Impulse Buying Behavior on TikTok Shop
+## SV of Students' Impulse Buying Behavior on TikTok Shop
 
 ## Group Problem Statement
 TikTok Shop has become very popular among students because it combines entertainment, promotions, and instant purchasing in one platform. Many students end up buying products impulsively without planning or careful consideration. However, students are often not fully aware of what factors influence their impulse buying behavior, such as promotions, product presentation, trust, and social influence.
