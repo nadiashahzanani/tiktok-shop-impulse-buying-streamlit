@@ -35,8 +35,8 @@ def app():
 
     st.write("""
     **Interpretation:**  
-    The analysis shows a moderate positive relationship between trust and motivation. 
-    Higher trust scores are associated with increased motivation to shop, confirming that psychological factors influence impulse buying behavior on TikTok Shop.
+    The correation heatmap sopports this finding by showing moderate to strong correlations between trust factors such as honesty, reliability and product quality and motivation factors such as discounts and gifts. 
+    This means trust plays an important role in influencing shopping motivation. It is easier to compare correlations across multiple trust and motivation items at once.
     """)
 
     # 2️⃣ Bar chart: Trust item means
@@ -47,8 +47,8 @@ def app():
 
     st.write("""
     **Interpretation:**  
-    The analysis shows a moderate positive relationship between trust and motivation. 
-    Higher trust scores are associated with increased motivation to shop, confirming that psychological factors influence impulse buying behavior on TikTok Shop.
+    This bar chart shows the average trust level for each trust-related item clearly. The item variety meets needs has the highest average scope, indicating respondents generally trust sellers who offer suitable product variety. 
+    This visualization was chosen because bar charts make it easy to compare average values across different items at a glance.
     """)
 
     # 3️⃣ Bar chart: Motivation item means
@@ -59,8 +59,8 @@ def app():
 
     st.write("""
     **Interpretation:**  
-    The analysis shows a moderate positive relationship between trust and motivation. 
-    Higher trust scores are associated with increased motivation to shop, confirming that psychological factors influence impulse buying behavior on TikTok Shop.
+    This charts shows that discounts and promotion are the strongest motivators compared to gifts or stress reduction. Respondents are more likely to feel motivated when promotiond are involved. 
+    A bar chart was chosen here because it clearly highlights differences in motivation levels between items, making comparison simple and direct/
     """)
 
     # 4️⃣ Scatter Plot: Trust vs Motivation
@@ -70,8 +70,8 @@ def app():
 
     st.write("""
     **Interpretation:**  
-    The analysis shows a moderate positive relationship between trust and motivation. 
-    Higher trust scores are associated with increased motivation to shop, confirming that psychological factors influence impulse buying behavior on TikTok Shop.
+    The scatter plot shows a clear positive relationship between trust score and shopping motivation. As trust increases, motivation to shop also tends to increase. Although the data points are spread out, the upward trend line suggests that customers who trust a platform more are generally more motivated to make purchases. 
+    This being chosen because it is suitable for showing the relationship between two variables and identifying trends.
     """)
 
     # 5️⃣ Radar Chart: Trust Dimensions
@@ -83,8 +83,7 @@ def app():
 
     st.write("""
     **Interpretation:**  
-    The analysis shows a moderate positive relationship between trust and motivation. 
-    Higher trust scores are associated with increased motivation to shop, confirming that psychological factors influence impulse buying behavior on TikTok Shop.
+    The radar chart summarizes the trust dimensions clearly. It shows that customers rate trust aspects fairly evenly, with slightly higher scores for reliability and product quality, indicating there are key contributors to overall trust.
     """)
 
     fig5, ax = plt.subplots(figsize=(6,6), subplot_kw=dict(polar=True))
