@@ -67,10 +67,8 @@ def app():
 
     st.write("""
     **Interpretation:**  
-    The correlation heatmap supports the finding that trust-related factors such as
-    reliability, honesty, and product quality are positively associated with motivation
-    factors such as discounts and gifts. This indicates that higher trust increases
-    shopping motivation on TikTok Shop.
+    The correlation heatmap supports the finding that trust-related factors such as reliability, honesty, and product quality are positively associated with motivation factors such as discounts and gifts. 
+    This indicates that higher trust increases shopping motivation on TikTok Shop.
     """)
 
     # --------------------------------------------------
@@ -95,10 +93,34 @@ def app():
     indicating these aspects are most important to respondents.
     """)
 
+     # --------------------------------------------------
+    # 3️⃣ Box Plot – Trust Distribution 
     # --------------------------------------------------
-    # 3️⃣ Bar Chart – Motivation Item Means
+    st.subheader("3️⃣ Distribution of Trust Responses")
+
+    trust_long = filtered_df[trust_items].melt(
+        var_name='Trust Item',
+        value_name='Response'
+    )
+
+    fig_box = px.box(
+        trust_long,
+        x='Trust Item',
+        y='Response'
+    )
+    st.plotly_chart(fig_box, use_container_width=True)
+
+    st.write("""
+    **Interpretation:**  
+    The box plot shows variation in trust responses across different trust items.
+    Some items have wider ranges, indicating mixed opinions, while others show more consistent responses. 
+    This visualization highlights variability, medians, and outliers that cannot be observed using mean values alone.
+    """)
+
     # --------------------------------------------------
-    st.subheader("3️⃣ Average Motivation Scores by Item")
+    # 4️⃣ Bar Chart – Motivation Item Means
+    # --------------------------------------------------
+    st.subheader("4️⃣ Average Motivation Scores by Item")
 
     motivation_means = filtered_df[motivation_items].mean().reset_index()
     motivation_means.columns = ['Motivation Item', 'Mean Score']
@@ -112,15 +134,14 @@ def app():
 
     st.write("""
     **Interpretation:**  
-    Discounts and promotions emerge as the strongest motivational factor,
-    followed by gifts and stress reduction. This indicates that promotional
-    strategies are highly effective in motivating impulse purchases.
+    Discounts and promotions emerge as the strongest motivational factor, followed by gifts and stress reduction. 
+    This indicates that promotional strategies are highly effective in motivating impulse purchases.
     """)
 
     # --------------------------------------------------
-    # 4️⃣ Scatter Plot – Trust vs Motivation
+    # 5️⃣ Scatter Plot – Trust vs Motivation
     # --------------------------------------------------
-    st.subheader("4️⃣ Relationship Between Trust and Motivation")
+    st.subheader("5️⃣ Relationship Between Trust and Motivation")
 
     # Scatter plot
     fig4 = px.scatter(
@@ -163,9 +184,9 @@ def app():
     """)
 
     # --------------------------------------------------
-    # 5️⃣ Radar Chart – Trust Dimensions
+    # 6️⃣ Radar Chart – Trust Dimensions
     # --------------------------------------------------
-    st.subheader("5️⃣ Trust Dimension Radar Chart")
+    st.subheader("6️⃣ Trust Dimension Radar Chart")
 
     labels = trust_items
     values = trust_means['Mean Score'].tolist()
@@ -182,7 +203,6 @@ def app():
 
     st.write("""
     **Interpretation:**  
-    The radar chart shows that trust dimensions are relatively balanced, with
-    slightly higher scores for reliability and product quality, highlighting
+    The radar chart shows that trust dimensions are relatively balanced, with slightly higher scores for reliability and product quality, highlighting
     their importance in shaping overall trust.
     """)
