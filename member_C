@@ -1,93 +1,160 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
 def app():
-    st.header("Member C — Sub-Objective 3: Examine Trust, Enjoyment & Shopping Motivation On TikTok Shop Analysis")
+    st.header(
+        "Member C — Sub-Objective 3: Examine Trust, Enjoyment & Shopping Motivation on TikTok Shop"
+    )
 
+    # --------------------------------------------------
     # Load dataset
+    # --------------------------------------------------
     df = pd.read_excel("cleaned_tiktok_data.xlsx")
 
+    # --------------------------------------------------
     # Define factor groups
+    # --------------------------------------------------
     trust_items = [
-        'trust_no_risk', 'trust_reliable', 'trust_variety_meets_needs',
-        'trust_sells_honestly', 'trust_quality_matches_description'
+        'trust_no_risk',
+        'trust_reliable',
+        'trust_variety_meets_needs',
+        'trust_sells_honestly',
+        'trust_quality_matches_description'
     ]
-    motivation_items = ['relax_reduce_stress', 'motivated_by_discount_promo', 'motivated_by_gifts']
 
+    motivation_items = [
+        'relax_reduce_stress',
+        'motivated_by_discount_promo',
+        'motivated_by_gifts'
+    ]
+
+    # --------------------------------------------------
     # Create composite scores
+    # --------------------------------------------------
     df['Trust_Score'] = df[trust_items].mean(axis=1)
     df['Motivation_Score'] = df[motivation_items].mean(axis=1)
 
+    # --------------------------------------------------
     # Sidebar filters
+    # --------------------------------------------------
     st.sidebar.header("Filter Respondents")
-    gender_filter = st.sidebar.multiselect("Gender", df['gender'].unique(), df['gender'].unique())
+    gender_filter = st.sidebar.multiselect(
+        "Gender",
+        options=df['gender'].unique(),
+        default=df['gender'].unique()
+    )
+
     filtered_df = df[df['gender'].isin(gender_filter)]
 
+    # --------------------------------------------------
     # 1️⃣ Correlation Heatmap
-    st.subheader("Correlation Between Trust & Motivation Items")
+    # --------------------------------------------------
+    st.subheader("1️⃣ Correlation Between Trust & Motivation Items")
+
     corr_items = filtered_df[trust_items + motivation_items].corr()
-    fig = px.imshow(corr_items, text_auto=True, color_continuous_scale='RdBu_r')
-    st.plotly_chart(fig)
+    fig1 = px.imshow(
+        corr_items,
+        text_auto=True,
+        color_continuous_scale='RdBu_r'
+    )
+    st.plotly_chart(fig1, use_container_width=True)
 
     st.write("""
     **Interpretation:**  
-    The correation heatmap sopports this finding by showing moderate to strong correlations between trust factors such as honesty, reliability and product quality and motivation factors such as discounts and gifts. 
-    This means trust plays an important role in influencing shopping motivation. It is easier to compare correlations across multiple trust and motivation items at once.
+    The correlation heatmap supports the finding that trust-related factors such as
+    reliability, honesty, and product quality are positively associated with motivation
+    factors such as discounts and gifts. This indicates that higher trust increases
+    shopping motivation on TikTok Shop.
     """)
 
-    # 2️⃣ Bar chart: Trust item means
-    st.subheader("Trust Item Scores")
-    trust_means = filtered_df[trust_items].mean()
-    fig2 = px.bar(trust_means, x=trust_means.index, y=trust_means.values, labels={'x':'Item','y':'Mean Score'})
-    st.plotly_chart(fig2)
+    # --------------------------------------------------
+    # 2️⃣ Bar Chart – Trust Item Means
+    # --------------------------------------------------
+    st.subheader("2️⃣ Average Trust Scores by Item")
+
+    trust_means = filtered_df[trust_items].mean().reset_index()
+    trust_means.columns = ['Trust Item', 'Mean Score']
+
+    fig2 = px.bar(
+        trust_means,
+        x='Trust Item',
+        y='Mean Score'
+    )
+    st.plotly_chart(fig2, use_container_width=True)
 
     st.write("""
     **Interpretation:**  
-    This bar chart shows the average trust level for each trust-related item clearly. The item variety meets needs has the highest average scope, indicating respondents generally trust sellers who offer suitable product variety. 
-    This visualization was chosen because bar charts make it easy to compare average values across different items at a glance.
+    This bar chart compares the average trust scores across different trust dimensions.
+    The results show that product variety and reliability receive the highest trust ratings,
+    indicating these aspects are most important to respondents.
     """)
 
-    # 3️⃣ Bar chart: Motivation item means
-    st.subheader("Motivation Item Scores")
-    mot_means = filtered_df[motivation_items].mean()
-    fig3 = px.bar(mot_means, x=mot_means.index, y=mot_means.values, labels={'x':'Item','y':'Mean Score'})
-    st.plotly_chart(fig3)
+    # --------------------------------------------------
+    # 3️⃣ Bar Chart – Motivation Item Means
+    # --------------------------------------------------
+    st.subheader("3️⃣ Average Motivation Scores by Item")
+
+    motivation_means = filtered_df[motivation_items].mean().reset_index()
+    motivation_means.columns = ['Motivation Item', 'Mean Score']
+
+    fig3 = px.bar(
+        motivation_means,
+        x='Motivation Item',
+        y='Mean Score'
+    )
+    st.plotly_chart(fig3, use_container_width=True)
 
     st.write("""
     **Interpretation:**  
-    This charts shows that discounts and promotion are the strongest motivators compared to gifts or stress reduction. Respondents are more likely to feel motivated when promotiond are involved. 
-    A bar chart was chosen here because it clearly highlights differences in motivation levels between items, making comparison simple and direct/
+    Discounts and promotions emerge as the strongest motivational factor,
+    followed by gifts and stress reduction. This indicates that promotional
+    strategies are highly effective in motivating impulse purchases.
     """)
 
-    # 4️⃣ Scatter Plot: Trust vs Motivation
-    st.subheader("Trust vs Motivation")
-    fig4 = px.scatter(filtered_df, x='Trust_Score', y='Motivation_Score', trendline='ols')
-    st.plotly_chart(fig4)
+    # --------------------------------------------------
+    # 4️⃣ Scatter Plot – Trust vs Motivation
+    # --------------------------------------------------
+    st.subheader("4️⃣ Relationship Between Trust and Motivation")
+
+    fig4 = px.scatter(
+        filtered_df,
+        x='Trust_Score',
+        y='Motivation_Score',
+        trendline='ols'
+    )
+    st.plotly_chart(fig4, use_container_width=True)
 
     st.write("""
     **Interpretation:**  
-    The scatter plot shows a clear positive relationship between trust score and shopping motivation. As trust increases, motivation to shop also tends to increase. Although the data points are spread out, the upward trend line suggests that customers who trust a platform more are generally more motivated to make purchases. 
-    This being chosen because it is suitable for showing the relationship between two variables and identifying trends.
+    The scatter plot shows a positive relationship between trust and shopping motivation.
+    As trust increases, motivation also increases, supporting the importance of trust
+    as a psychological driver of impulse buying behavior.
     """)
 
-    # 5️⃣ Radar Chart: Trust Dimensions
-    st.subheader("Trust Dimension Radar Chart")
+    # --------------------------------------------------
+    # 5️⃣ Radar Chart – Trust Dimensions
+    # --------------------------------------------------
+    st.subheader("5️⃣ Trust Dimension Radar Chart")
+
     labels = trust_items
-    values = trust_means.values.tolist()
+    values = trust_means['Mean Score'].tolist()
     values += values[:1]
-    angles = np.linspace(0, 2*np.pi, len(labels)+1)
+
+    angles = np.linspace(0, 2 * np.pi, len(labels) + 1)
+
+    fig5, ax = plt.subplots(figsize=(6, 6), subplot_kw=dict(polar=True))
+    ax.plot(angles, values, linewidth=2)
+    ax.fill(angles, values, alpha=0.25)
+    ax.set_thetagrids(angles[:-1] * 180 / np.pi, labels)
+
+    st.pyplot(fig5)
 
     st.write("""
     **Interpretation:**  
-    The radar chart summarizes the trust dimensions clearly. It shows that customers rate trust aspects fairly evenly, with slightly higher scores for reliability and product quality, indicating there are key contributors to overall trust.
+    The radar chart shows that trust dimensions are relatively balanced, with
+    slightly higher scores for reliability and product quality, highlighting
+    their importance in shaping overall trust.
     """)
-
-    fig5, ax = plt.subplots(figsize=(6,6), subplot_kw=dict(polar=True))
-    ax.plot(angles, values, 'o-', linewidth=2)
-    ax.fill(angles, values, alpha=0.25)
-    ax.set_thetagrids(angles[:-1] * 180/np.pi, labels)
-    st.pyplot(fig5)
