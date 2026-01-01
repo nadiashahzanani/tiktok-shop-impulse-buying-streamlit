@@ -6,7 +6,7 @@ This project explores **students' impulse buying behavior on TikTok Shop** using
 The main objectives is to analyze and visualize the factors influencing online impulse buying behavior by examining demographics, shopping experience, psychological drivers, trust and product presentation using scientific data visualization techniques.
 
 ## Dataset
-The dataset consists of survey responses from students about their experience and behavior on TikTok Shop. It has been cleaned and preprocessed to calculate factor scores including **Trust Score**, **Motivation Score**, and overall impulse buying score.
+The dataset consists of survey responses from students about their experience and behavior on TikTok Shop. It has been cleaned and preprocessed to calculate factor scores including overall impulse buying score.
 
 ## Each Focuses
 - **Sub-Objective 1:** Analyze the **demographic profile** and **TikTok Shop usage.** Visualizations like bar chart, pie charts and treemaps. Th focusing to understanding the profile of respondents based on gender, age, faculty and monthly income.
