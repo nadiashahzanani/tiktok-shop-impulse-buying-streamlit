@@ -37,6 +37,9 @@ def app():
     df['Trust_Score'] = df[trust_items].mean(axis=1)
     df['Motivation_Score'] = df[motivation_items].mean(axis=1)
 
+     # 🔧 SAFETY: remove missing values (important)
+    df = df.dropna(subset=['Trust_Score', 'Motivation_Score'])
+
     # --------------------------------------------------
     # Sidebar filters
     # --------------------------------------------------
@@ -131,8 +134,8 @@ def app():
     )
     
     # ---- ADD MANUAL REGRESSION LINE (NumPy) ----
-    x = filtered_df['Trust_Score']
-    y = filtered_df['Motivation_Score']
+    x = filtered_df['Trust_Score'].values
+    y = filtered_df['Motivation_Score'].values
     
     # Calculate line of best fit
     m, b = np.polyfit(x, y, 1)
