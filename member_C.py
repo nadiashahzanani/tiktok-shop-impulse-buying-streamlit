@@ -123,6 +123,7 @@ def app():
         filtered_df,
         x='Trust_Score',
         y='Motivation_Score'
+        trendline='ols'
     )
     st.plotly_chart(fig4, use_container_width=True)
 
