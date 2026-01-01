@@ -41,18 +41,6 @@ def app():
     df = df.dropna(subset=['Trust_Score', 'Motivation_Score'])
 
     # --------------------------------------------------
-    # Sidebar filters
-    # --------------------------------------------------
-    st.sidebar.header("Filter Respondents")
-    gender_filter = st.sidebar.multiselect(
-        "Gender",
-        options=df['gender'].unique(),
-        default=df['gender'].unique()
-    )
-
-    filtered_df = df[df['gender'].isin(gender_filter)]
-
-    # --------------------------------------------------
     # 1️⃣ Correlation Heatmap
     # --------------------------------------------------
     st.subheader("1️⃣ Correlation Between Trust & Motivation Items")
