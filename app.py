@@ -16,7 +16,6 @@ page = st.sidebar.radio("Go to page:", ["Main Page", "Member A", "Member B", "Me
 # Load member pages
 if page == "Main Page":
     st.subheader("Project Overview")
-    st.write("This Streamlit dashboard presents a scientific visualization study on
-    students' impulse buying behavior on TikTok Shop.")
+    st.write("This Streamlit dashboard presents a scientific visualization study on students' impulse buying behavior on TikTok Shop.")
 elif page == "Member C":
     member_C.app()
