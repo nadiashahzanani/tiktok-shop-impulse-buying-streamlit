@@ -1,5 +1,5 @@
 import streamlit as st
-import member_C import member_C
+import member_C
 
 # Page configuration
 st.set_page_config(
