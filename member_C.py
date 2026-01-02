@@ -10,6 +10,16 @@ def app():
     )
 
     # --------------------------------------------------
+    #  Problem Statement
+    # --------------------------------------------------
+    st.subheader("Problem Statement")
+    st.write("""
+    Trust and enjoyment are critical psychological factors influencing online shopping decisions. 
+    A lack of consumer trust or low enjoyment levels may negatively affect purchasing behavior. 
+    Therefore, visually analyzing these constructs can help identify patterns and insights in users’ shopping experiences on TikTok Shop.
+    """)
+
+    # --------------------------------------------------
     # Load dataset
     # --------------------------------------------------
     df = pd.read_excel("cleaned_tiktok_data.xlsx")
