@@ -15,9 +15,6 @@ def app():
     # --------------------------------------------------
     # Dataset for general analysis & correlation
     df_main = pd.read_excel("tiktok_impulse_data_responses.xlsx")
-    
-    # Dataset for advanced plotting / predictive analysis
-    df_cleaned = pd.read_excel("cleaned_tiktok_data.xlsx")
 
     # --------------------------------------------------
     # Define factor groups
